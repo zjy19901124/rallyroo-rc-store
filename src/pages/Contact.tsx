@@ -72,12 +72,7 @@ const Contact = () => {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-eucalyptus-light flex-shrink-0">
                   <MessageSquare className="h-5 w-5 text-secondary" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Response Time</h3>
-                  <p className="text-muted-foreground">
-                    We typically respond within 24-48 hours
-                  </p>
-                </div>
+                
               </div>
 
               <div className="flex items-start gap-4">
@@ -86,7 +81,9 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Location</h3>
-                  <p className="text-muted-foreground">S, Australia</p>
+                  <p className="text-muted-foreground">
+                    Sydney, Australia
+                  </p>
                 </div>
               </div>
             </div>
