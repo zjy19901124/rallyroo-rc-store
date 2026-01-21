@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Shield, Truck, Clock } from "lucide-react";
-
 export function Footer() {
-  return (
-    <footer className="border-t border-border bg-card">
+  return <footer className="border-t border-border bg-card">
       {/* Trust Badges */}
       <div className="border-b border-border py-8">
         <div className="section-container">
@@ -140,11 +138,10 @@ export function Footer() {
             </p>
             <p className="flex items-center gap-1 text-sm text-muted-foreground">
               <MapPin className="h-4 w-4" />
-              Made with ❤️ in Australia
+               ❤️ Australian Owned 
             </p>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 }
