@@ -2,13 +2,8 @@ import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Target, Heart, Truck, Shield } from "lucide-react";
-
 const About = () => {
-  return (
-    <Layout
-      title="About RallyRoo"
-      description="Learn about RallyRoo, Australia's home for quality RC trucks. Our mission, values, and commitment to adventure."
-    >
+  return <Layout title="About RallyRoo" description="Learn about RallyRoo, Australia's home for quality RC trucks. Our mission, values, and commitment to adventure.">
       {/* Hero */}
       <section className="bg-muted py-16 md:py-24">
         <div className="section-container text-center">
@@ -42,11 +37,7 @@ const About = () => {
                 buyer looking for a backyard basher or an experienced hobbyist
                 chasing the next challenge, we've got you covered.
               </p>
-              <p>
-                Based in Sydney, we're proud to ship fast to every corner of
-                Australia – from bustling cities to remote outback towns. Because
-                adventure shouldn't have to wait.
-              </p>
+              <p>Based in Melbourne, we're proud to ship fast to every corner of Australia – from bustling cities to remote outback towns. Because adventure shouldn't have to wait.</p>
             </div>
           </div>
         </div>
@@ -122,8 +113,6 @@ const About = () => {
           </Button>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default About;
