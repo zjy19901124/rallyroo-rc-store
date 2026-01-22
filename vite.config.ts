@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   // Replace 'your-repository-name' with your actual GitHub repo name
-  base: "/your-repository-name/", 
+  base: "/rallyroo-rc-store/", 
   server: {
     host: "::",
     port: 8080,
