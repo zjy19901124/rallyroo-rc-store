@@ -139,7 +139,7 @@ const Index = () => {
             desc: "Smooth 360° action"
           }, {
             name: "Stunt",
-            emoji: "🤸",
+            emoji: "🔥",
             desc: "Flip, roll & tumble"
           }, {
             name: "DIY",
