@@ -14,9 +14,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useProduct, useSiteSettings } from "@/hooks/useProducts";
+import { useProduct, useSiteSettings, getStockStatus } from "@/hooks/useProducts";
 import { useCart } from "@/hooks/useCart";
 import { toast } from "sonner";
+import { StockBadge } from "@/components/products/StockBadge";
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -24,8 +25,15 @@ const ProductDetail = () => {
   const { data: settings } = useSiteSettings();
   const { addItem } = useCart();
 
+  const stockStatus = product ? getStockStatus(product) : "sold_out";
+  const isSoldOut = stockStatus === "sold_out";
+
   const handleAddToCart = () => {
     if (!product) return;
+    if (isSoldOut) {
+      toast.error("This product is currently sold out.");
+      return;
+    }
     addItem({
       id: product.id,
       name: product.name,
@@ -37,6 +45,10 @@ const ProductDetail = () => {
   };
 
   const handleBuyNow = () => {
+    if (isSoldOut) {
+      toast.error("This product is currently sold out.");
+      return;
+    }
     if (!product?.stripe_payment_link_url) {
       toast.error(
         "This product is not available for purchase yet. Please check back soon!"
@@ -131,10 +143,16 @@ const ProductDetail = () => {
 
           {/* Details */}
           <div>
-            {/* Category */}
-            <span className="badge-category mb-4 inline-block">
-              {product.category}
-            </span>
+            {/* Category & Stock */}
+            <div className="mb-4 flex items-center gap-2">
+              <span className="badge-category">
+                {product.category}
+              </span>
+              <StockBadge status={stockStatus} />
+              {product.sku && (
+                <span className="text-xs text-muted-foreground">SKU: {product.sku}</span>
+              )}
+            </div>
 
             {/* Title */}
             <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
@@ -235,15 +253,16 @@ const ProductDetail = () => {
 
             {/* Actions */}
             <div className="mb-6 flex flex-col gap-3 sm:flex-row">
-              <Button size="lg" className="flex-1" onClick={handleBuyNow}>
+              <Button size="lg" className="flex-1" onClick={handleBuyNow} disabled={isSoldOut}>
                 <ExternalLink className="mr-2 h-5 w-5" />
-                Buy Now
+                {isSoldOut ? "Sold Out" : "Buy Now"}
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="flex-1"
                 onClick={handleAddToCart}
+                disabled={isSoldOut}
               >
                 <ShoppingCart className="mr-2 h-5 w-5" />
                 Add to Cart

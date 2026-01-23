@@ -22,6 +22,7 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
   const [formData, setFormData] = useState({
     name: product?.name || "",
     slug: product?.slug || "",
+    sku: product?.sku || "",
     price_aud: product?.price_aud || 0,
     compare_at_price_aud: product?.compare_at_price_aud || null,
     description: product?.description || "",
@@ -34,6 +35,9 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
     category: product?.category || "Off-road",
     is_active: product?.is_active ?? true,
     stripe_payment_link_url: product?.stripe_payment_link_url || "",
+    stock_on_hand: product?.stock_on_hand ?? 0,
+    stock_reserved: product?.stock_reserved ?? 0,
+    low_stock_threshold: product?.low_stock_threshold ?? 5,
   });
 
   const generateSlug = (name: string) => {
@@ -51,6 +55,7 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
       const productData = {
         name: formData.name,
         slug: formData.slug || generateSlug(formData.name),
+        sku: formData.sku || null,
         price_aud: formData.price_aud,
         compare_at_price_aud: formData.compare_at_price_aud || null,
         description: formData.description,
@@ -63,6 +68,9 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
         category: formData.category,
         is_active: formData.is_active,
         stripe_payment_link_url: formData.stripe_payment_link_url || null,
+        stock_on_hand: formData.stock_on_hand,
+        stock_reserved: formData.stock_reserved,
+        low_stock_threshold: formData.low_stock_threshold,
       };
 
       if (product) {
@@ -118,6 +126,59 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
             required
           />
         </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="sku">SKU</Label>
+          <Input
+            id="sku"
+            value={formData.sku}
+            onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
+            placeholder="e.g., SL-8356A"
+          />
+        </div>
+      </div>
+
+      {/* Stock Management */}
+      <div className="rounded-lg border border-border bg-muted/50 p-4 space-y-4">
+        <h3 className="font-semibold text-foreground">Stock Management</h3>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="space-y-2">
+            <Label htmlFor="stockOnHand">Stock On Hand</Label>
+            <Input
+              id="stockOnHand"
+              type="number"
+              min="0"
+              value={formData.stock_on_hand}
+              onChange={(e) => setFormData({ ...formData, stock_on_hand: parseInt(e.target.value) || 0 })}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="stockReserved">Stock Reserved</Label>
+            <Input
+              id="stockReserved"
+              type="number"
+              min="0"
+              value={formData.stock_reserved}
+              onChange={(e) => setFormData({ ...formData, stock_reserved: parseInt(e.target.value) || 0 })}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="lowStockThreshold">Low Stock Threshold</Label>
+            <Input
+              id="lowStockThreshold"
+              type="number"
+              min="0"
+              value={formData.low_stock_threshold}
+              onChange={(e) => setFormData({ ...formData, low_stock_threshold: parseInt(e.target.value) || 5 })}
+            />
+          </div>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Available: {formData.stock_on_hand - formData.stock_reserved} units
+          {formData.stock_on_hand - formData.stock_reserved <= 0 && " (Sold Out)"}
+          {formData.stock_on_hand - formData.stock_reserved > 0 && 
+           formData.stock_on_hand - formData.stock_reserved <= formData.low_stock_threshold && " (Low Stock)"}
+        </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">

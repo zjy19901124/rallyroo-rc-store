@@ -48,9 +48,14 @@ export type Database = {
           id: string
           images: string[] | null
           is_active: boolean
+          low_stock_threshold: number
           name: string
           price_aud: number
+          sku: string | null
           slug: string
+          stock_available: number | null
+          stock_on_hand: number
+          stock_reserved: number
           stripe_payment_link_url: string | null
           updated_at: string
           weight_kg: number
@@ -67,9 +72,14 @@ export type Database = {
           id?: string
           images?: string[] | null
           is_active?: boolean
+          low_stock_threshold?: number
           name: string
           price_aud: number
+          sku?: string | null
           slug: string
+          stock_available?: number | null
+          stock_on_hand?: number
+          stock_reserved?: number
           stripe_payment_link_url?: string | null
           updated_at?: string
           weight_kg?: number
@@ -86,9 +96,14 @@ export type Database = {
           id?: string
           images?: string[] | null
           is_active?: boolean
+          low_stock_threshold?: number
           name?: string
           price_aud?: number
+          sku?: string | null
           slug?: string
+          stock_available?: number | null
+          stock_on_hand?: number
+          stock_reserved?: number
           stripe_payment_link_url?: string | null
           updated_at?: string
           weight_kg?: number
