@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -10,35 +9,27 @@ import { Badge } from "@/components/ui/badge";
 import { ProductForm } from "@/components/admin/ProductForm";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, Lock, LogOut } from "lucide-react";
+import { Plus, Pencil, Trash2, Lock, LogOut, ShieldAlert } from "lucide-react";
 import { getStockStatus, type Product } from "@/hooks/useProducts";
 import { StockBadge } from "@/components/products/StockBadge";
-
-const ADMIN_PASSWORD = "rallyroo2024";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 const Admin = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { user, isAdmin, isLoading, signOut } = useAdminAuth();
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingProducts, setLoadingProducts] = useState(true);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    const stored = sessionStorage.getItem("admin_auth");
-    if (stored === "true") {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isAuthenticated) {
+    if (!isLoading && isAdmin) {
       fetchProducts();
     }
-  }, [isAuthenticated]);
+  }, [isLoading, isAdmin]);
 
   const fetchProducts = async () => {
-    setLoading(true);
+    setLoadingProducts(true);
     const { data, error } = await supabase
       .from("products")
       .select("*")
@@ -49,23 +40,12 @@ const Admin = () => {
     } else {
       setProducts(data as Product[]);
     }
-    setLoading(false);
+    setLoadingProducts(false);
   };
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("admin_auth", "true");
-      toast.success("Welcome, Admin!");
-    } else {
-      toast.error("Invalid password");
-    }
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    sessionStorage.removeItem("admin_auth");
+  const handleLogout = async () => {
+    await signOut();
+    toast.success("Logged out successfully");
   };
 
   const handleDeleteProduct = async (id: string) => {
@@ -86,31 +66,37 @@ const Admin = () => {
     fetchProducts();
   };
 
-  if (!isAuthenticated) {
+  // Loading state
+  if (isLoading) {
+    return (
+      <Layout title="Admin">
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </Layout>
+    );
+  }
+
+  // Not logged in - redirect to auth
+  if (!user) {
     return (
       <Layout title="Admin Login">
         <div className="min-h-[60vh] flex items-center justify-center">
           <Card className="w-full max-w-md">
             <CardHeader className="text-center">
               <Lock className="mx-auto h-12 w-12 text-primary mb-4" />
-              <CardTitle>Admin Access</CardTitle>
+              <CardTitle>Admin Access Required</CardTitle>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleLogin} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter admin password"
-                  />
-                </div>
-                <Button type="submit" className="w-full">
-                  Login
-                </Button>
-              </form>
+            <CardContent className="space-y-4">
+              <p className="text-center text-muted-foreground">
+                Please sign in with an admin account to access this page.
+              </p>
+              <Button 
+                className="w-full" 
+                onClick={() => navigate("/auth", { state: { returnTo: "/admin" } })}
+              >
+                Sign In
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -118,6 +104,39 @@ const Admin = () => {
     );
   }
 
+  // Logged in but not admin
+  if (!isAdmin) {
+    return (
+      <Layout title="Access Denied">
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <Card className="w-full max-w-md">
+            <CardHeader className="text-center">
+              <ShieldAlert className="mx-auto h-12 w-12 text-destructive mb-4" />
+              <CardTitle>Access Denied</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-center text-muted-foreground">
+                Your account ({user.email}) does not have admin privileges.
+              </p>
+              <p className="text-center text-sm text-muted-foreground">
+                Contact an administrator if you believe this is an error.
+              </p>
+              <Button 
+                variant="outline" 
+                className="w-full" 
+                onClick={handleLogout}
+              >
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign Out
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </Layout>
+    );
+  }
+
+  // Admin dashboard
   return (
     <Layout title="Admin Dashboard">
       <div className="section-container py-8">
@@ -135,7 +154,7 @@ const Admin = () => {
           </div>
         </div>
 
-        {loading ? (
+        {loadingProducts ? (
           <p className="text-muted-foreground">Loading products...</p>
         ) : (
           <div className="rounded-lg border bg-card overflow-hidden">
