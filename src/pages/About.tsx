@@ -24,19 +24,12 @@ const About = () => {
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-6 text-3xl font-bold text-foreground">Our Story</h2>
             <div className="prose prose-lg text-muted-foreground">
-              <p>
-                RallyRoo was born from a simple love of RC trucks and the great
-                Australian outdoors. We noticed that finding quality RC vehicles
-                in Australia often meant paying inflated prices or waiting weeks
-                for international shipping.
-              </p>
-              <p>
-                We set out to change that. Today, we curate the best RC trucks
-                from around the world, ensuring every product meets our standards
-                for quality, durability, and fun. Whether you're a first-time
-                buyer looking for a backyard basher or an experienced hobbyist
-                chasing the next challenge, we've got you covered.
-              </p>
+              <p>RallyRoo was born from a simple love of RC trucks and the great Australian outdoors. We noticed that finding quality RC vehicles in Australia often meant paying inflated prices or waiting weeks for international shipping.
+
+            </p>
+              <p>We set out to change that. Today, we curate the best RC trucks from around the world, ensuring every product meets our standards for quality, durability, and fun. Whether you're a first-time buyer looking for a backyard basher or an experienced hobbyist chasing the next challenge, we've got you covered.
+
+            </p>
               <p>Based in Melbourne, we're proud to ship fast to every corner of Australia – from bustling cities to remote outback towns. Because adventure shouldn't have to wait.</p>
             </div>
           </div>
