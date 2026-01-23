@@ -3,7 +3,8 @@ import { ShoppingCart, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/useCart";
 import { toast } from "sonner";
-import type { Product } from "@/hooks/useProducts";
+import { getStockStatus, type Product } from "@/hooks/useProducts";
+import { StockBadge } from "./StockBadge";
 
 interface ProductCardProps {
   product: Product;
@@ -15,9 +16,16 @@ export function ProductCard({ product }: ProductCardProps) {
   const discountPercent = hasDiscount
     ? Math.round((1 - product.price_aud / product.compare_at_price_aud!) * 100)
     : 0;
+  
+  const stockStatus = getStockStatus(product);
+  const isSoldOut = stockStatus === "sold_out";
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (isSoldOut) {
+      toast.error("This product is currently sold out.");
+      return;
+    }
     addItem({
       id: product.id,
       name: product.name,
@@ -30,6 +38,10 @@ export function ProductCard({ product }: ProductCardProps) {
 
   const handleBuyNow = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (isSoldOut) {
+      toast.error("This product is currently sold out.");
+      return;
+    }
     if (!product.stripe_payment_link_url) {
       toast.error("This product is not available for purchase yet. Please check back soon!");
       return;
@@ -49,9 +61,12 @@ export function ProductCard({ product }: ProductCardProps) {
         {hasDiscount && (
           <span className="badge-sale">-{discountPercent}%</span>
         )}
-        <span className="absolute bottom-3 left-3 rounded-full bg-background/90 px-3 py-1 text-xs font-medium backdrop-blur-sm">
-          {product.category}
-        </span>
+        <div className="absolute bottom-3 left-3 flex gap-2">
+          <span className="rounded-full bg-background/90 px-3 py-1 text-xs font-medium backdrop-blur-sm">
+            {product.category}
+          </span>
+          <StockBadge status={stockStatus} />
+        </div>
       </div>
 
       {/* Content */}
@@ -88,6 +103,7 @@ export function ProductCard({ product }: ProductCardProps) {
             size="sm"
             className="flex-1"
             onClick={handleAddToCart}
+            disabled={isSoldOut}
           >
             <ShoppingCart className="mr-2 h-4 w-4" />
             Add to Cart
@@ -96,9 +112,10 @@ export function ProductCard({ product }: ProductCardProps) {
             size="sm"
             className="flex-1"
             onClick={handleBuyNow}
+            disabled={isSoldOut}
           >
             <ExternalLink className="mr-2 h-4 w-4" />
-            Buy Now
+            {isSoldOut ? "Sold Out" : "Buy Now"}
           </Button>
         </div>
       </div>

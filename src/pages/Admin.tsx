@@ -11,7 +11,8 @@ import { ProductForm } from "@/components/admin/ProductForm";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, Lock, LogOut } from "lucide-react";
-import type { Product } from "@/hooks/useProducts";
+import { getStockStatus, type Product } from "@/hooks/useProducts";
+import { StockBadge } from "@/components/products/StockBadge";
 
 const ADMIN_PASSWORD = "rallyroo2024";
 
@@ -143,50 +144,64 @@ const Admin = () => {
                 <TableRow>
                   <TableHead className="w-16">Image</TableHead>
                   <TableHead>Name</TableHead>
+                  <TableHead>SKU</TableHead>
                   <TableHead>Category</TableHead>
                   <TableHead>Price</TableHead>
+                  <TableHead>Stock</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {products.map((product) => (
-                  <TableRow key={product.id}>
-                    <TableCell>
-                      <img
-                        src={product.images[0] || "/placeholder.svg"}
-                        alt={product.name}
-                        className="w-12 h-12 object-cover rounded"
-                      />
-                    </TableCell>
-                    <TableCell className="font-medium">{product.name}</TableCell>
-                    <TableCell>{product.category}</TableCell>
-                    <TableCell>${product.price_aud.toFixed(2)}</TableCell>
-                    <TableCell>
-                      <Badge variant={product.is_active ? "default" : "secondary"}>
-                        {product.is_active ? "Active" : "Inactive"}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex gap-2 justify-end">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => { setEditingProduct(product); setShowForm(true); }}
-                        >
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleDeleteProduct(product.id)}
-                        >
-                          <Trash2 className="h-4 w-4 text-destructive" />
-                        </Button>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {products.map((product) => {
+                  const stockStatus = getStockStatus(product);
+                  return (
+                    <TableRow key={product.id}>
+                      <TableCell>
+                        <img
+                          src={product.images[0] || "/placeholder.svg"}
+                          alt={product.name}
+                          className="w-12 h-12 object-cover rounded"
+                        />
+                      </TableCell>
+                      <TableCell className="font-medium">{product.name}</TableCell>
+                      <TableCell className="text-muted-foreground">{product.sku || "—"}</TableCell>
+                      <TableCell>{product.category}</TableCell>
+                      <TableCell>${product.price_aud.toFixed(2)}</TableCell>
+                      <TableCell>
+                        <div className="flex flex-col gap-1">
+                          <StockBadge status={stockStatus} />
+                          <span className="text-xs text-muted-foreground">
+                            {product.stock_available} available
+                          </span>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={product.is_active ? "default" : "secondary"}>
+                          {product.is_active ? "Active" : "Inactive"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex gap-2 justify-end">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => { setEditingProduct(product); setShowForm(true); }}
+                          >
+                            <Pencil className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDeleteProduct(product.id)}
+                          >
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </div>

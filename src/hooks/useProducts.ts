@@ -17,8 +17,21 @@ export interface Product {
   category: string;
   is_active: boolean;
   stripe_payment_link_url: string | null;
+  sku: string | null;
+  stock_on_hand: number;
+  stock_reserved: number;
+  stock_available: number;
+  low_stock_threshold: number;
   created_at: string;
   updated_at: string;
+}
+
+export type StockStatus = "in_stock" | "low_stock" | "sold_out";
+
+export function getStockStatus(product: Product): StockStatus {
+  if (product.stock_available <= 0) return "sold_out";
+  if (product.stock_available <= product.low_stock_threshold) return "low_stock";
+  return "in_stock";
 }
 
 export function useProducts(category?: string) {
