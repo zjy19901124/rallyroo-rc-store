@@ -90,11 +90,18 @@ export function Header() {
             </Link>
 
             {user ? (
-              <Button variant="ghost" size="icon" onClick={handleSignOut} title="Sign out">
-                <LogOut className="h-5 w-5" />
-              </Button>
+              <div className="flex items-center gap-2">
+                <Link to="/account">
+                  <Button variant="ghost" size="icon" title="My Account">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </Link>
+                <Button variant="ghost" size="icon" onClick={handleSignOut} title="Sign out">
+                  <LogOut className="h-5 w-5" />
+                </Button>
+              </div>
             ) : (
-              <Link to="/auth">
+              <Link to="/login">
                 <Button variant="ghost" size="icon" title="Sign in">
                   <User className="h-5 w-5" />
                 </Button>
