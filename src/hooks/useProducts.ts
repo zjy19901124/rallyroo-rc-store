@@ -24,6 +24,7 @@ export interface Product {
   low_stock_threshold: number;
   created_at: string;
   updated_at: string;
+  video_url: string | null;
 }
 
 export type StockStatus = "in_stock" | "low_stock" | "sold_out";
