@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      addresses: {
+        Row: {
+          address_line1: string
+          address_line2: string | null
+          created_at: string
+          id: string
+          is_default: boolean | null
+          name: string
+          phone: string | null
+          postcode: string
+          state: string
+          suburb: string
+          user_id: string
+        }
+        Insert: {
+          address_line1: string
+          address_line2?: string | null
+          created_at?: string
+          id?: string
+          is_default?: boolean | null
+          name: string
+          phone?: string | null
+          postcode: string
+          state: string
+          suburb: string
+          user_id: string
+        }
+        Update: {
+          address_line1?: string
+          address_line2?: string | null
+          created_at?: string
+          id?: string
+          is_default?: boolean | null
+          name?: string
+          phone?: string | null
+          postcode?: string
+          state?: string
+          suburb?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       admin_sessions: {
         Row: {
           created_at: string
@@ -32,6 +74,51 @@ export type Database = {
           expires_at?: string
           id?: string
           session_token?: string
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          amount_total: number
+          created_at: string
+          currency: string
+          customer_email: string
+          id: string
+          items: Json
+          shipping: Json | null
+          status: Database["public"]["Enums"]["order_status"]
+          stripe_checkout_session_id: string | null
+          stripe_payment_intent_id: string | null
+          stripe_payment_link_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          amount_total: number
+          created_at?: string
+          currency?: string
+          customer_email: string
+          id?: string
+          items?: Json
+          shipping?: Json | null
+          status?: Database["public"]["Enums"]["order_status"]
+          stripe_checkout_session_id?: string | null
+          stripe_payment_intent_id?: string | null
+          stripe_payment_link_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          amount_total?: number
+          created_at?: string
+          currency?: string
+          customer_email?: string
+          id?: string
+          items?: Json
+          shipping?: Json | null
+          status?: Database["public"]["Enums"]["order_status"]
+          stripe_checkout_session_id?: string | null
+          stripe_payment_intent_id?: string | null
+          stripe_payment_link_id?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -113,6 +200,33 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           created_at: string
@@ -179,6 +293,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      order_status: "pending" | "paid" | "refunded" | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -307,6 +422,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      order_status: ["pending", "paid", "refunded", "cancelled"],
     },
   },
 } as const
