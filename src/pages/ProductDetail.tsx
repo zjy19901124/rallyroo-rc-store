@@ -125,19 +125,32 @@ const ProductDetail = () => {
         </Link>
 
         <div className="grid gap-10 lg:grid-cols-2">
-          {/* Image */}
-          <div className="relative">
-            <div className="aspect-square overflow-hidden rounded-xl bg-muted">
-              <img
-                src={product.images[0] || "/placeholder.svg"}
-                alt={product.name}
-                className="h-full w-full object-cover"
-              />
+          {/* Image & Video */}
+          <div className="space-y-4">
+            <div className="relative">
+              <div className="aspect-square overflow-hidden rounded-xl bg-muted">
+                <img
+                  src={product.images[0] || "/placeholder.svg"}
+                  alt={product.name}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              {hasDiscount && (
+                <span className="absolute left-4 top-4 rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground">
+                  Save {discountPercent}%
+                </span>
+              )}
             </div>
-            {hasDiscount && (
-              <span className="absolute left-4 top-4 rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground">
-                Save {discountPercent}%
-              </span>
+            {product.video_url && (
+              <div className="aspect-video overflow-hidden rounded-xl bg-muted">
+                <iframe
+                  src={product.video_url.replace('youtu.be/', 'www.youtube.com/embed/').replace('watch?v=', 'embed/')}
+                  title={`${product.name} video`}
+                  className="h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
             )}
           </div>
 
