@@ -58,6 +58,7 @@ export type Database = {
           stock_reserved: number
           stripe_payment_link_url: string | null
           updated_at: string
+          video_url: string | null
           weight_kg: number
         }
         Insert: {
@@ -82,6 +83,7 @@ export type Database = {
           stock_reserved?: number
           stripe_payment_link_url?: string | null
           updated_at?: string
+          video_url?: string | null
           weight_kg?: number
         }
         Update: {
@@ -106,6 +108,7 @@ export type Database = {
           stock_reserved?: number
           stripe_payment_link_url?: string | null
           updated_at?: string
+          video_url?: string | null
           weight_kg?: number
         }
         Relationships: []
