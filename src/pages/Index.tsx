@@ -5,6 +5,8 @@ import { Layout } from "@/components/layout/Layout";
 import { ProductGrid } from "@/components/products/ProductGrid";
 import { useProducts } from "@/hooks/useProducts";
 import heroImage from "@/assets/hero-truck.jpg";
+import auFlag from "@/assets/au-flag.png";
+
 const Index = () => {
   const {
     data: products,
@@ -21,8 +23,9 @@ const Index = () => {
 
         <div className="section-container relative py-20 md:py-32">
           <div className="max-w-2xl">
-            <span className="inline-block rounded-full bg-primary/20 px-4 py-1.5 text-sm font-medium text-primary-foreground mb-6 animate-fade-in">
-              🇦🇺 Proudly Australian  
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-1.5 text-sm font-medium text-primary-foreground mb-6 animate-fade-in">
+              <img src={auFlag} alt="Australian flag" className="h-4 w-auto" />
+              Proudly Australian  
             </span>
             <h1 className="mb-6 text-4xl font-bold tracking-tight text-primary-foreground md:text-5xl lg:text-6xl animate-fade-in" style={{
             animationDelay: "100ms"
