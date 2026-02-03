@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Helmet } from "react-helmet-async";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 
 interface LayoutProps {
   children: ReactNode;
@@ -36,6 +37,7 @@ export function Layout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ChatWidget />
       </div>
     </>
   );
