@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import { ProductGrid } from "@/components/products/ProductGrid";
 import { useProducts } from "@/hooks/useProducts";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import heroImage from "@/assets/hero-truck.jpg";
 import auFlag from "@/assets/au-flag.png";
 
@@ -177,6 +178,8 @@ const Index = () => {
           </Button>
         </div>
       </section>
+
+      <ChatWidget />
     </Layout>;
 };
 export default Index;
