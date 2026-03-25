@@ -10,11 +10,7 @@ const Cart = () => {
   const { items, removeItem, updateQuantity, total, clearCart } = useCart();
   const { data: settings } = useSiteSettings();
 
-  const shippingCost = settings?.shipping_flat_rate_aud || 9.95;
-  const freeShippingThreshold = settings?.free_shipping_threshold_aud || 99;
-  const qualifiesForFreeShipping = total >= freeShippingThreshold;
-  const finalTotal = total + (qualifiesForFreeShipping ? 0 : shippingCost);
-  const amountToFreeShipping = freeShippingThreshold - total;
+  const finalTotal = total; // Free shipping on all orders
 
   const handleCheckout = () => {
     toast.info(
