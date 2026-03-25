@@ -98,9 +98,9 @@ const Shipping = () => {
 
               <div className="rounded-xl bg-card p-6 shadow-soft">
                 <p className="text-muted-foreground">
-                  Remote and regional areas may experience longer delivery times.
-                  We partner with Australia Post and other carriers to ensure your
-                  package arrives safely, no matter where you are in Australia.
+                  Remote and regional areas within Australia may experience slightly longer delivery times.
+                  International orders are shipped via trusted global carriers. Delivery times may vary
+                  by destination but typically arrive within 3 weeks.
                 </p>
               </div>
             </section>
