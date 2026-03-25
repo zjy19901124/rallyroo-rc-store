@@ -5,7 +5,7 @@ const Shipping = () => {
   return (
     <Layout
       title="Shipping & Returns"
-      description="Learn about RallyRoo's shipping options and return policy. Fast Australian shipping with flat rate $9.95 or free over $99."
+      description="Learn about RallyRoo's shipping options and return policy. Free worldwide shipping on all orders."
     >
       <div className="section-container py-12 md:py-16">
         <h1 className="mb-8 text-3xl font-bold text-foreground md:text-4xl">

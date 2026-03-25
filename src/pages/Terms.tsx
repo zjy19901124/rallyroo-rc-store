@@ -62,8 +62,9 @@ const Terms = () => {
 
             <h2 className="text-foreground">6. Shipping</h2>
             <p>
-              We ship to addresses within Australia only. Shipping costs are
-              calculated at checkout. We are not responsible for delays caused by
+              We offer free shipping on all orders, both within Australia and
+              internationally. International delivery typically takes
+              approximately 3 weeks. We are not responsible for delays caused by
               shipping carriers, customs, or circumstances beyond our control.
               See our{" "}
               <a href="/shipping" className="text-primary">

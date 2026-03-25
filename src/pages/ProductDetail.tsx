@@ -190,17 +190,9 @@ const ProductDetail = () => {
               <div className="flex items-center gap-2 text-secondary">
                 <Truck className="h-5 w-5" />
                 <span className="font-medium">
-                  {qualifiesForFreeShipping
-                    ? "✓ Qualifies for FREE shipping!"
-                    : `Shipping: $${settings?.shipping_flat_rate_aud?.toFixed(2) || "9.95"} flat rate AU-wide`}
+                  ✓ FREE worldwide shipping!
                 </span>
               </div>
-              {!qualifiesForFreeShipping && settings && (
-                <p className="mt-1 text-sm text-secondary/80">
-                  Free shipping on orders over $
-                  {settings.free_shipping_threshold_aud}
-                </p>
-              )}
             </div>
 
             {/* Description */}

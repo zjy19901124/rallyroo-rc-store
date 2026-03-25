@@ -162,13 +162,7 @@ const Cart = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span className="font-medium text-foreground">
-                    {qualifiesForFreeShipping ? (
-                      <span className="text-secondary">FREE</span>
-                    ) : (
-                      `$${shippingCost.toFixed(2)}`
-                    )}
-                  </span>
+                  <span className="font-medium text-secondary">FREE</span>
                 </div>
               </div>
 
