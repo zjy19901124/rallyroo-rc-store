@@ -67,8 +67,13 @@ const Shipping = () => {
                   <li className="flex items-start gap-2">
                     <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
                     <span className="text-muted-foreground">
-                      Delivery typically takes 3-7 business days depending on
-                      location
+                      <strong className="text-foreground">Australian delivery:</strong> 3-7 business days
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      <strong className="text-foreground">International delivery:</strong> approximately 3 weeks
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
