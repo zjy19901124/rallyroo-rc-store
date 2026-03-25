@@ -145,22 +145,12 @@ const Cart = () => {
                 Order Summary
               </h2>
 
-              {/* Free Shipping Progress */}
-              {!qualifiesForFreeShipping && (
-                <div className="mb-6 rounded-lg bg-muted p-4">
-                  <p className="text-sm text-muted-foreground">
-                    Add <span className="font-bold text-foreground">${amountToFreeShipping.toFixed(2)}</span> more for free shipping!
-                  </p>
-                  <div className="mt-2 h-2 overflow-hidden rounded-full bg-border">
-                    <div
-                      className="h-full bg-primary transition-all"
-                      style={{
-                        width: `${Math.min((total / freeShippingThreshold) * 100, 100)}%`,
-                      }}
-                    />
-                  </div>
-                </div>
-              )}
+              {/* Free Shipping Badge */}
+              <div className="mb-6 rounded-lg bg-eucalyptus-light p-4">
+                <p className="text-sm font-medium text-secondary">
+                  ✓ FREE worldwide shipping on all orders!
+                </p>
+              </div>
 
               {/* Totals */}
               <div className="space-y-3 border-b border-border pb-4">
