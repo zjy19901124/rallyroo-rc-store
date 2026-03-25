@@ -25,27 +25,20 @@ const Shipping = () => {
 
               <div className="rounded-xl bg-card p-6 shadow-soft">
                 <h3 className="mb-4 text-lg font-semibold text-foreground">
-                  Domestic Shipping (Australia)
+                  Free Worldwide Shipping
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
                     <span className="text-muted-foreground">
-                      <strong className="text-foreground">Flat Rate:</strong> $9.95
-                      for all orders under $99
+                      <strong className="text-foreground">FREE shipping</strong> on
+                      all orders — domestic and international
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
                     <span className="text-muted-foreground">
-                      <strong className="text-foreground">Free Shipping:</strong>{" "}
-                      On all orders over $99
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-                    <span className="text-muted-foreground">
-                      We ship to all Australian states and territories
+                      We ship to all Australian states and territories, plus worldwide
                     </span>
                   </li>
                 </ul>
