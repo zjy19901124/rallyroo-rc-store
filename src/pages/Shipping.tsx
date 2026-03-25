@@ -5,7 +5,7 @@ const Shipping = () => {
   return (
     <Layout
       title="Shipping & Returns"
-      description="Learn about RallyRoo's shipping options and return policy. Fast Australian shipping with flat rate $9.95 or free over $99."
+      description="Learn about RallyRoo's shipping options and return policy, including free international shipping from April 15, 2026."
     >
       <div className="section-container py-12 md:py-16">
         <h1 className="mb-8 text-3xl font-bold text-foreground md:text-4xl">
@@ -94,16 +94,33 @@ const Shipping = () => {
                   <MapPin className="h-6 w-6 text-secondary" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground">
-                  Regional Delivery
+                  International Shipping
                 </h2>
               </div>
 
               <div className="rounded-xl bg-card p-6 shadow-soft">
-                <p className="text-muted-foreground">
-                  Remote and regional areas may experience longer delivery times.
-                  We partner with Australia Post and other carriers to ensure your
-                  package arrives safely, no matter where you are in Australia.
-                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      <strong className="text-foreground">Effective date:</strong>{" "}
+                      April 15, 2026 (in 3 weeks)
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      <strong className="text-foreground">International shipping:</strong>{" "}
+                      Free for all international orders
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      Delivery times vary by destination and customs processing.
+                    </span>
+                  </li>
+                </ul>
               </div>
             </section>
           </div>
