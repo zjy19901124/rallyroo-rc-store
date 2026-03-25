@@ -15,17 +15,17 @@ const faqs = [
       {
         question: "How much does shipping cost?",
         answer:
-          "We offer flat rate shipping of $9.95 for all orders within Australia. Orders over $99 qualify for FREE shipping! We ship to all Australian states and territories.",
+          "We offer FREE shipping on all orders, both within Australia and internationally!",
       },
       {
         question: "How long will delivery take?",
         answer:
-          "Orders are dispatched within 1-2 business days. Delivery typically takes 3-7 business days depending on your location. You'll receive tracking information via email once your order ships.",
+          "Orders are dispatched within 1-2 business days. Domestic (Australian) delivery typically takes 3-7 business days. International orders are delivered within approximately 3 weeks depending on your location. You'll receive tracking information via email once your order ships.",
       },
       {
         question: "Do you ship internationally?",
         answer:
-          "Currently, we only ship within Australia. We're working on expanding our shipping options – stay tuned for updates!",
+          "Yes! We offer free international shipping on all orders. International delivery typically takes around 3 weeks depending on your destination.",
       },
       {
         question: "Can I track my order?",

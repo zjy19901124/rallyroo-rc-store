@@ -5,7 +5,7 @@ const Shipping = () => {
   return (
     <Layout
       title="Shipping & Returns"
-      description="Learn about RallyRoo's shipping options and return policy. Fast Australian shipping with flat rate $9.95 or free over $99."
+      description="Learn about RallyRoo's shipping options and return policy. Free worldwide shipping on all orders."
     >
       <div className="section-container py-12 md:py-16">
         <h1 className="mb-8 text-3xl font-bold text-foreground md:text-4xl">
@@ -25,27 +25,20 @@ const Shipping = () => {
 
               <div className="rounded-xl bg-card p-6 shadow-soft">
                 <h3 className="mb-4 text-lg font-semibold text-foreground">
-                  Domestic Shipping (Australia)
+                  Free Worldwide Shipping
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
                     <span className="text-muted-foreground">
-                      <strong className="text-foreground">Flat Rate:</strong> $9.95
-                      for all orders under $99
+                      <strong className="text-foreground">FREE shipping</strong> on
+                      all orders — domestic and international
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
                     <span className="text-muted-foreground">
-                      <strong className="text-foreground">Free Shipping:</strong>{" "}
-                      On all orders over $99
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-                    <span className="text-muted-foreground">
-                      We ship to all Australian states and territories
+                      We ship to all Australian states and territories, plus worldwide
                     </span>
                   </li>
                 </ul>
@@ -74,8 +67,13 @@ const Shipping = () => {
                   <li className="flex items-start gap-2">
                     <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
                     <span className="text-muted-foreground">
-                      Delivery typically takes 3-7 business days depending on
-                      location
+                      <strong className="text-foreground">Australian delivery:</strong> 3-7 business days
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      <strong className="text-foreground">International delivery:</strong> approximately 3 weeks
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
@@ -100,9 +98,9 @@ const Shipping = () => {
 
               <div className="rounded-xl bg-card p-6 shadow-soft">
                 <p className="text-muted-foreground">
-                  Remote and regional areas may experience longer delivery times.
-                  We partner with Australia Post and other carriers to ensure your
-                  package arrives safely, no matter where you are in Australia.
+                  Remote and regional areas within Australia may experience slightly longer delivery times.
+                  International orders are shipped via trusted global carriers. Delivery times may vary
+                  by destination but typically arrive within 3 weeks.
                 </p>
               </div>
             </section>

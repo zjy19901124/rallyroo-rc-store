@@ -64,7 +64,7 @@ const Index = () => {
               <Truck className="h-8 w-8 text-primary" />
               <div>
                 <p className="font-semibold text-foreground">Free Shipping</p>
-                <p className="text-sm text-muted-foreground">Over $99</p>
+                <p className="text-sm text-muted-foreground">Worldwide</p>
               </div>
             </div>
             <div className="flex items-center justify-center gap-3">

@@ -20,8 +20,8 @@ export function Footer() {
                 <Truck className="h-6 w-6 text-secondary" />
               </div>
               <div>
-                <p className="font-semibold text-foreground">AU Shipping</p>
-                <p className="text-sm text-muted-foreground">Fast nationwide delivery</p>
+                <p className="font-semibold text-foreground">Free Shipping</p>
+                <p className="text-sm text-muted-foreground">Worldwide delivery</p>
               </div>
             </div>
             <div className="flex items-center justify-center gap-3 sm:justify-end">

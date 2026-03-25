@@ -27,7 +27,7 @@ const Shop = () => {
   return (
     <Layout
       title="Shop RC Trucks"
-      description="Browse our full range of RC trucks. Off-road crawlers, drift machines, stunt trucks, and DIY kits. Fast Australian shipping."
+      description="Browse our full range of RC trucks. Off-road crawlers, drift machines, stunt trucks, and DIY kits. Free worldwide shipping."
     >
       {/* Header */}
       <section className="bg-muted py-12 md:py-16">
