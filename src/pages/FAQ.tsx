@@ -15,7 +15,7 @@ const faqs = [
       {
         question: "How much does shipping cost?",
         answer:
-          "We offer flat rate shipping of $9.95 for all orders within Australia. Orders over $99 qualify for FREE shipping! We ship to all Australian states and territories.",
+          "Within Australia, we offer flat rate shipping of $9.95 for orders under $99, and FREE shipping for orders over $99. From April 15, 2026, all international orders also qualify for free shipping.",
       },
       {
         question: "How long will delivery take?",
@@ -25,7 +25,7 @@ const faqs = [
       {
         question: "Do you ship internationally?",
         answer:
-          "Currently, we only ship within Australia. We're working on expanding our shipping options – stay tuned for updates!",
+          "Yes. We are introducing free international shipping effective April 15, 2026 (in 3 weeks). Delivery times vary based on destination and customs processing.",
       },
       {
         question: "Can I track my order?",
