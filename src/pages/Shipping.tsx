@@ -5,7 +5,7 @@ const Shipping = () => {
   return (
     <Layout
       title="Shipping & Returns"
-      description="Learn about RallyRoo's shipping options and return policy. Fast Australian shipping with flat rate $9.95 or free over $99."
+      description="Learn about RallyRoo's shipping options and return policy, including free international shipping starting April 15, 2026."
     >
       <div className="section-container py-12 md:py-16">
         <h1 className="mb-8 text-3xl font-bold text-foreground md:text-4xl">
@@ -104,6 +104,30 @@ const Shipping = () => {
                   We partner with Australia Post and other carriers to ensure your
                   package arrives safely, no matter where you are in Australia.
                 </p>
+              </div>
+            </section>
+
+            <section>
+              <div className="rounded-xl bg-card p-6 shadow-soft">
+                <h3 className="mb-4 text-lg font-semibold text-foreground">
+                  International Shipping
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      <strong className="text-foreground">Free International Shipping:</strong>{" "}
+                      Available on all international orders starting{" "}
+                      <strong className="text-foreground">April 15, 2026</strong>
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      Until then, international shipping rates are calculated at checkout
+                    </span>
+                  </li>
+                </ul>
               </div>
             </section>
           </div>
